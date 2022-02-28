@@ -1,0 +1,112 @@
+---
+title: "Sample R Markdown document"
+author: "Miruna Barbu"
+date: "28/02/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# Load relevant R Packages
+# install.packages("DiagrammeR")
+library(readr)
+library(tidyverse)
+library(RColorBrewer)
+library(pander)
+library(knitr)
+library(kableExtra)
+
+```
+
+### A sample RMarkdown title
+
+This RMarkdown file is a sample to demonstrate how to create results/data presentation in this mode.
+
+#### Examples of image and result presentation in R Markdown {.tabset}
+
+" {.tabset} " is a useful command that permits the use of tabs in RMarkdown. This helps to reduce the overall length of the document.
+
+##### Tab information
+
+You can choose to have an "initial" tab to provide information of what is in the next tabs. I do this to shorten the length of the document and to provide a clear introduction to what is presented.
+
+For instance, in the following tabs there are:
+
+1. Image presentation in R Markdown.
+2. Table presentation in R Markdown.
+3. Data analysis presentation and results table in R Markdown.
+
+##### Example of an image presentation in RMarkdown
+
+The image below was obtained from [Google Images](https://www.google.com/search?q=puppies&sxsrf=APq-WBsvg2UEhJzz0R4VDsZAcSuQwMdCKA:1646054927337&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjJxeW5wKL2AhWEUcAKHdgYDVUQ_AUoAXoECAMQAw&biw=1320&bih=769&dpr=2.5#imgrc=Xlf4qHwbPczmKM).
+
+```{r pressure imag3, echo=FALSE,fig.align="center", out.width = '60%'}
+knitr::include_graphics("./puppies.jpg")
+```
+
+
+##### Example of a table presentation in RMarkdown
+
+The table below is one created for the purposes of this document. It uses "pander" to display the table in RMarkdown. It presents the size of 5 dog breeds, randomly selected from [here](https://www.akc.org/expert-advice/nutrition/breed-weight-chart/).
+
+```{r Dog breed N, echo=FALSE}
+dog_breed=matrix(c("German Shepherd","Basset hound","Bulldogs","Dalmatians","Pugs","50-70 pounds","40-65 pounds","40 pounds
+","45-70 pounds
+","14-18 pounds
+","65-90 pounds","40-65 pounds","50 pounds	","45-70 pounds
+","14-18 pounds
+"),nrow=5,ncol=3)
+colnames(dog_breed)[1:3]<-c("Dog breed","Female size","Male size")
+
+pander(dog_breed, caption="Female and Male size across 5 dog breeds.")
+
+```
+
+##### Sample of data analysis & results
+
+The script below contains a simple analysis (food consumption in kg based on dog size) used to illustrate how to conduct analysis and present results in an RMarkdown file. All data was created simply for the purpose of this tutorial.
+
+```{r data analysis & results, echo=FALSE,message=FALSE}
+# Create dummy data
+dog_size_food=data.frame(matrix(runif(50, min=0, max=100)))
+dog_size_food$dog_size=sample(c(0,1), replace=TRUE, size=50)
+colnames(dog_size_food)[1:2]<-c("food_consump","dog_size")
+# 0=small size, 1=large size
+dog_size_food$dog_size=as.factor(dog_size_food$dog_size)
+
+# Run linear model
+fit=summary(lm(food_consump~dog_size, data=dog_size_food))
+
+# Extract results
+fit_res <- fit$coefficients[c(1,2),]
+fit_res=as.data.frame(fit_res)
+fit_res$result=c("Intercept","Food consumption as a function of dog size")
+
+# Provide table with significant results highlighted
+color.me <- which(fit_res$`Pr(>|t|)` < 0.05)
+
+# Turn all numeric columns to character JUST for display of table
+fit_res=fit_res %>% mutate_if(is.numeric,as.character)
+
+# We create a table that highlights all significant findings in green - in this case, the intercept.
+fit_res %>% 
+  kable(booktabs = T,row.names=F, caption = "Results indicating food consumption as a function of dog size.") %>%
+  kable_styling() %>%
+  row_spec(color.me, bold = T, color = "green")
+  
+```
+
+
+
+#### {-} 
+
+And now we end the tabset with " {-} "
+
+#### General information
+
+You can run multiple statistical tests in chunks as above and even create your own tables based on results. You can get more information from the following resources:
+
+1. [R Markdown cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/).
+2. [R Markdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf).
+3. [R Markdown introduction](https://rmarkdown.rstudio.com/lesson-1.html).
+
