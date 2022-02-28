@@ -2,7 +2,8 @@
 title: "Sample R Markdown document"
 author: "Miruna Barbu"
 date: "28/02/2022"
-output: html_document
+always_allow_html: true
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
