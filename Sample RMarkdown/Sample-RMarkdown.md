@@ -67,16 +67,16 @@ result
 <tbody>
 <tr>
 <td style="text-align:left;font-weight: bold;color: green !important;">
-49.3883084479926
+46.3615761756006
 </td>
 <td style="text-align:left;font-weight: bold;color: green !important;">
-5.24034731629491
+6.31179969703881
 </td>
 <td style="text-align:left;font-weight: bold;color: green !important;">
-9.4246250233108
+7.34522297932731
 </td>
 <td style="text-align:left;font-weight: bold;color: green !important;">
-1.69912089237262e-12
+2.17815417979772e-09
 </td>
 <td style="text-align:left;font-weight: bold;color: green !important;">
 Intercept
@@ -84,16 +84,16 @@ Intercept
 </tr>
 <tr>
 <td style="text-align:left;">
--1.52967211673405
+3.69593424204401
 </td>
 <td style="text-align:left;">
-7.72647059245587
+8.58927145355474
 </td>
 <td style="text-align:left;">
--0.197978119301667
+0.430296592910033
 </td>
 <td style="text-align:left;">
-0.84389826501556
+0.668905787562033
 </td>
 <td style="text-align:left;">
 Food consumption as a function of dog size
