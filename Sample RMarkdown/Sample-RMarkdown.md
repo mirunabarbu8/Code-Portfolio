@@ -1,29 +1,14 @@
 Sample R Markdown document
 ================
-Miruna Barbu
+Miruna C. Barbu
 28/02/2022
 
 ### A sample RMarkdown title
 
 This RMarkdown file is a sample to demonstrate how to create
-results/data presentation in this mode.
-
-#### Examples of image and result presentation in R Markdown
-
-" {.tabset} " is a useful command that permits the use of tabs in
-RMarkdown. This helps to reduce the overall length of the document.
-
-##### Tab information
-
-You can choose to have an “initial” tab to provide information of what
-is in the next tabs. I do this to shorten the length of the document and
-to provide a clear introduction to what is presented.
-
-For instance, in the following tabs there are:
-
-1.  Image presentation in R Markdown.
-2.  Table presentation in R Markdown.
-3.  Data analysis presentation and results table in R Markdown.
+results/data presentation in this mode. I created this file as a
+tutorial for a new student starting out in our department, to get her
+started on the basics of RMarkdown.
 
 ##### Example of an image presentation in RMarkdown
 
@@ -82,16 +67,16 @@ result
 <tbody>
 <tr>
 <td style="text-align:left;font-weight: bold;color: green !important;">
-51.6627274014844
+49.3883084479926
 </td>
 <td style="text-align:left;font-weight: bold;color: green !important;">
-6.2946676825774
+5.24034731629491
 </td>
 <td style="text-align:left;font-weight: bold;color: green !important;">
-8.20737964364319
+9.4246250233108
 </td>
 <td style="text-align:left;font-weight: bold;color: green !important;">
-1.07215459615503e-10
+1.69912089237262e-12
 </td>
 <td style="text-align:left;font-weight: bold;color: green !important;">
 Intercept
@@ -99,16 +84,16 @@ Intercept
 </tr>
 <tr>
 <td style="text-align:left;">
-3.8084342379499
+-1.52967211673405
 </td>
 <td style="text-align:left;">
-9.08557020248824
+7.72647059245587
 </td>
 <td style="text-align:left;">
-0.419173937691538
+-0.197978119301667
 </td>
 <td style="text-align:left;">
-0.676959022756003
+0.84389826501556
 </td>
 <td style="text-align:left;">
 Food consumption as a function of dog size
@@ -116,10 +101,6 @@ Food consumption as a function of dog size
 </tr>
 </tbody>
 </table>
-
-#### 
-
-And now we end the tabset with " {-} "
 
 #### General information
 

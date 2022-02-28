@@ -1,6 +1,6 @@
 ---
 title: "Sample R Markdown document"
-author: "Miruna Barbu"
+author: "Miruna C. Barbu"
 date: "28/02/2022"
 always_allow_html: true
 output: github_document
@@ -21,21 +21,7 @@ library(kableExtra)
 
 ### A sample RMarkdown title
 
-This RMarkdown file is a sample to demonstrate how to create results/data presentation in this mode.
-
-#### Examples of image and result presentation in R Markdown {.tabset}
-
-" {.tabset} " is a useful command that permits the use of tabs in RMarkdown. This helps to reduce the overall length of the document.
-
-##### Tab information
-
-You can choose to have an "initial" tab to provide information of what is in the next tabs. I do this to shorten the length of the document and to provide a clear introduction to what is presented.
-
-For instance, in the following tabs there are:
-
-1. Image presentation in R Markdown.
-2. Table presentation in R Markdown.
-3. Data analysis presentation and results table in R Markdown.
+This RMarkdown file is a sample to demonstrate how to create results/data presentation in this mode. I created this file as a tutorial for a new student starting out in our department, to get her started on the basics of RMarkdown.
 
 ##### Example of an image presentation in RMarkdown
 
@@ -44,7 +30,6 @@ The image below was obtained from [Google Images](https://www.google.com/search?
 ```{r pressure imag3, echo=FALSE,fig.align="center", out.width = '60%'}
 knitr::include_graphics("./puppies.jpg")
 ```
-
 
 ##### Example of a table presentation in RMarkdown
 
@@ -96,12 +81,6 @@ fit_res %>%
   row_spec(color.me, bold = T, color = "green")
   
 ```
-
-
-
-#### {-} 
-
-And now we end the tabset with " {-} "
 
 #### General information
 
