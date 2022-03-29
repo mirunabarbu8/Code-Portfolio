@@ -1,0 +1,67 @@
+---
+title: "Dataset example - function for wide-to-long format variables"
+author: "Miruna Barbu"
+date: "28/03/2022"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# Read in relevant R packages
+library(tidyverse)
+
+```
+
+The accompanying .r script ("wide_to_long_format.R") uses a function created by myself to turn multiple variables from wide to long format. This is useful in analyses that use repeated measures, such as linear mixed-effects models.
+
+The script:
+
+1. Loads in a dummy dataset. In this case, I created a dataset containing measures for three white matter tracts (anterior, posterior, and superior thalamic radiations), for the left and right hemisphere. This is a measure I regularly work with in my research, although the script can be applied to any variable needing to be transformed from wide to long format.
+
+*Although the dummy dataset contains 10 variables only, the script works with large-scale datasets (I have used this with >30,000 participants and up to 64 brain regions).
+
+2. Loads in a covariate file (this can be excluded from the function by commenting out lines ...). This saves time from including covariates at later stages of the analysis process.
+
+3. Carries out a number of steps to prepare the data for input into the function. The function takes 6 arguments (or 5 in case you want to exclude covariates).
+
+The script for creating dummy data is below:
+
+```{r Create dummy data, echo=FALSE}
+# Create dummy dataset file
+
+dummy_whitematter <- data.frame(ID = seq(1:10),
+                  lh.antthalrad = sample(seq(0.2, 0.5, by= 0.001),10),
+                  rh.antthalrad = sample(seq(0.2, 0.5, by= 0.001),10),
+                  lh.postthalrad = sample(seq(0.2, 0.5, by= 0.001),10),
+                  rh.postthalrad = sample(seq(0.2, 0.5, by= 0.001),10),
+                  lh.supthalrad = sample(seq(0.2, 0.5, by= 0.001),10),
+                  rh.supthalrad = sample(seq(0.2, 0.5, by= 0.001),10))
+
+# Create dummy covariate file
+dummy_cov <- data.frame(ID = seq(1:10),
+                        sex=as.factor(sample(0:1, 10, replace = TRUE)),
+                        age=sample(seq(25, 40),10))
+
+# Save both
+# saveRDS(dummy_whitematter, "./wide_to_long_dummy_dataset.rds")
+
+# saveRDS(dummy_cov, "./wide_to_long_dummy_covfile.rds")
+
+
+
+cat("Print summaries of both datasets (for visualisation purposes)")
+
+cat("Dummy dataset summary:")
+
+print(summary(dummy_whitematter))
+
+cat("Dummy covariate summary:")
+
+print(summary(dummy_cov))
+
+
+```
+
+
+
+
