@@ -53,7 +53,7 @@ matrix_plot
 The plot below is somewhat similar to the plot above. This is the same project as above, this time showing a matrix indicating the correlation between polygenic risk scores and two measures of general intelligence factors. The percentage matrix created in the script below is made-up data. 
 
 
-```{r Create correlation between PRS and intelligence measures, echo=FALSE, fig.height = 4, fig.width = 7.5, fig.align = "center"}
+```{r Create correlation between PRS and intelligence measures, echo=FALSE, fig.height = 4, fig.width = 4, fig.align = "center"}
 # Create a matrix to store proportions
 cor_matrix = matrix(c(-0.057,0.060,-0.35,-0.068,0.022,-0.008,0.029,-0.028,-0.066,-0.089),nrow=5,ncol=2)
 colnames(cor_matrix)[1:2]<-c("Offspring g","Parent-offspring cognitive deviation")
