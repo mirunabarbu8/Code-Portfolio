@@ -1,0 +1,87 @@
+---
+title: "Plots with ggplot"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# Read in relevant R packages
+library(ggplot2)
+library(reshape2)
+library(corrplot)
+
+```
+
+This document contains a series of plots I have had to create throughout my employment. I created these plots using real data, however converted this to dummy data due to data safety. The dummy data follows similar patterns to real-life data, but it is not. This dummy data can be plugged in to produce the plots created below (for code testing purposes).  
+
+#### Plots showing proportion
+
+The plot below produces a matrix indicating the correlation between a parent's measure of intelligence and their child's. This is one of the projects I have worked on, using family-structured data (parent-offspring dyads). The percentage matrix created in the script below is made-up data. 
+
+*I think the plot looks better without a title; however, this line is commented out to be implemented if needed.
+
+```{r Create matrix proportion for parent-offspring correlations, echo=FALSE, fig.height = 4, fig.width = 7.5, fig.align = "center"}
+# Create a matrix to store proportions
+prop_matrix = matrix(c(1, 6, 2, 16, 10, 50, 3, 4, 8),nrow=3,ncol=3)
+colnames(prop_matrix)[1:3]<-c("Offspring high g","Offspring medium g", "Offspring low g")
+rownames(prop_matrix)[1:3]<-c("Parent high g","Parent medium g", "Parent low g")
+
+# Turn to long-format
+long_prop_matrix<-melt(prop_matrix)
+
+matrix_plot = ggplot(long_prop_matrix, aes(x = Var2, y = Var1)) + 
+  geom_raster(aes(fill=value)) + 
+  geom_text(aes(label = value)) +
+  scale_fill_gradient(low="grey", high="salmon") +
+  # labs(title="Parental to offspring g-factor") +
+  theme_bw() + 
+  theme(axis.title.x=element_blank(),axis.title.y=element_blank(),axis.text.x = element_text(angle = 90, hjust=1),                 plot.title=element_text(size=12,hjust = 0.5,face="bold")) +
+  guides(fill=guide_legend(title="Parental to offspring g (%)"))
+
+matrix_plot
+
+# Save this plot - this is commented out here as it is just to show how to save this in a high-definition format
+# tiff("./parent_child_gfactor.tiff",
+#      width=2000, height=1200, res = 300)
+# matrix_plot
+# dev.off()
+
+```
+
+#### Plots showing correlations
+
+The plot below is somewhat similar to the plot above. This is the same project as above, this time showing a matrix indicating the correlation between polygenic risk scores and two measures of general intelligence factors. The percentage matrix created in the script below is made-up data. 
+
+
+```{r Create correlation between PRS and intelligence measures, echo=FALSE, fig.height = 4, fig.width = 7.5, fig.align = "center"}
+# Create a matrix to store proportions
+cor_matrix = matrix(c(-0.057,0.060,-0.35,-0.068,0.022,-0.008,0.029,-0.028,-0.066,-0.089),nrow=5,ncol=2)
+colnames(cor_matrix)[1:2]<-c("Offspring g","Parent-offspring cognitive deviation")
+rownames(cor_matrix)[1:5]<-c("pT_0.01","pT_0.05", "pT_0.1","pT_0.5","pT_1")
+
+# Turn to long-format
+long_cor_matrix<-melt(cor_matrix)
+# Add column for significance
+long_cor_matrix$sign = c("*","*","","","*","","","","*","")
+
+matrix_plot = ggplot(long_cor_matrix, aes(x = Var2, y = Var1)) + 
+  geom_raster(aes(fill=value)) + 
+  geom_text(aes(label = c(sign))) +
+  scale_fill_gradient(low="salmon", high="grey") +
+  labs(title="Correlation between g and \nSCZ PRS (Ripke et al, 2014)") +
+  theme_bw() + 
+  theme(axis.title.x=element_blank(),axis.title.y=element_blank(),axis.text.x = element_text(angle = 45, hjust=1),                 plot.title=element_text(size=12,hjust = 0.5,face="bold")) +
+  theme(legend.title = element_blank())
+
+matrix_plot
+
+# Save this plot - this is commented out here as it is just to show how to save this in a high-definition format
+# tiff("./sczprs_cogn_corrs.tiff",
+#      width=2000, height=1200, res = 300)
+# matrix_plot
+# dev.off()
+
+```
+
+
+
